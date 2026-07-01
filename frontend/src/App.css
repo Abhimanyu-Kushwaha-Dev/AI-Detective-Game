@@ -1,0 +1,193 @@
+:root {
+  --neon-green: #39ff14;
+  --dark-green: #0b2607;
+  --terminal-bg: #030a02;
+  --border-glow: #1f5c15;
+  --text-main: #adffad;
+}
+
+body {
+  margin: 0;
+  background-color: var(--terminal-bg);
+  font-family: 'Courier New', Courier, monospace;
+  color: var(--text-main);
+}
+
+.detective-terminal {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 95vh;
+}
+
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--neon-green);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 5px var(--neon-green);
+}
+
+.terminal-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.status-badge {
+  background-color: var(--dark-green);
+  border: 1px solid var(--neon-green);
+  padding: 5px 15px;
+  font-weight: bold;
+}
+
+/* Panels layout */
+.game-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.column-left, .column-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.panel {
+  background: rgba(11, 38, 7, 0.3);
+  border: 1px solid var(--border-glow);
+  padding: 15px;
+  position: relative;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.panel h3 {
+  margin-top: 0;
+  color: var(--neon-green);
+  font-size: 1.1rem;
+  border-bottom: 1px dashed var(--border-glow);
+  padding-bottom: 5px;
+}
+
+/* Suspect items */
+.suspect-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.suspect-card {
+  border: 1px solid var(--border-glow);
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.suspect-card:hover, .suspect-card.active {
+  background-color: var(--dark-green);
+  border-color: var(--neon-green);
+  box-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+}
+
+.id-tag {
+  color: #ffcc00;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.profession {
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* Custom terminal buttons */
+.btn-action, .btn-utility, .btn-accuse, .btn-reset {
+  font-family: 'Courier New', monospace;
+  background: transparent;
+  color: var(--neon-green);
+  border: 1px solid var(--neon-green);
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.btn-action {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+}
+
+.btn-accuse {
+  border-color: #ff3333;
+  color: #ff3333;
+  padding: 4px 8px;
+}
+
+.btn-accuse:hover {
+  background: #3a0000;
+}
+
+.btn-utility {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+.panel-header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed var(--border-glow);
+  margin-bottom: 10px;
+}
+.panel-header-actions h3 { border: none; margin: 0; }
+
+/* Dialogue Feed details */
+.dialogue-block {
+  margin-bottom: 15px;
+}
+.query { color: #88ccff; margin: 0 0 5px 0; }
+.response { color: #fff; margin: 0; font-style: italic; padding-left: 10px; }
+
+/* Clues Vault */
+.clue-vault {
+  max-height: 250px;
+  overflow-y: auto;
+}
+.clue-vault ul { padding-left: 20px; margin: 0; }
+.clue-vault li { margin-bottom: 8px; }
+.alert-clue { color: #ffcc00; list-style-type: "⚠ "; }
+.standard-clue { list-style-type: "» "; }
+
+/* Bottom text ticker area */
+.system-ticker {
+  margin-top: 20px;
+  background-color: #050f03;
+  border: 1px solid var(--neon-green);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+}
+.ticker-label {
+  color: #ffcc00;
+  font-weight: bold;
+  margin-right: 10px;
+}
+.btn-reset { margin-left: auto; padding: 4px 10px; }
+
+/* Animations */
+.pulse {
+  animation: border-pulsate 2s infinite alternate;
+}
+@keyframes border-pulsate {
+  0% { box-shadow: 0 0 4px var(--border-glow); }
+  100% { box-shadow: 0 0 15px var(--neon-green); }
+}
+.text-center { text-center: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; }
+.subtitle { opacity: 0.6; margin-bottom: 30px; }
