@@ -12,6 +12,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [interrogationCount, setInterrogationCount] = useState(0);
   const maxInterrogations = 5;
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   // UI Selection states
   const [activeSuspectId, setActiveSuspectId] = useState(null);
@@ -24,7 +25,7 @@ function App() {
     setLoading(true);
     setSystemMessage("Connecting to mainframe... Generating Case File...");
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/new-game");
+      const response = await fetch(`${baseUrl}/api/new-game`);
       const data = await response.json();
       if (data.error) throw new Error(data.error);
 
@@ -125,17 +126,14 @@ function App() {
   const handleAccuse = async (suspectId) => {
     setSystemMessage("Transmitting warrant data to server...");
     try {
-      const response = await fetch(
-        "http://127.0.0.1:5000/api/verify-accusation",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            accused_id: suspectId,
-            thief_id: caseFile.thief_id,
-          }),
-        },
-      );
+      const response = await fetch(`${baseUrl}/api/verify-accusation`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          accused_id: suspectId,
+          thief_id: caseFile.thief_id,
+        }),
+      });
       const result = await response.json();
 
       if (result.correct) {
