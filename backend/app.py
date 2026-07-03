@@ -15,6 +15,13 @@ app = Flask(__name__)
 # Enable CORS for frontend integration
 CORS(app)
 
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({
+        "message": "Backend is working!!",
+        "status": True,
+    })
+
 @app.route('/api/new-game', methods=['GET'])
 def new_game():
     """Starts a new case, fetches AI data, and selects the culprit."""
